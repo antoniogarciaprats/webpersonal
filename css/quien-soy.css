@@ -1,0 +1,1241 @@
+/* ==========================================================================
+   Página "Quién soy" – Tema antoniogarciaprats
+   Se apoya en css/cabecera.css (variables) y css/inicio.css (componentes comunes)
+   ========================================================================== */
+
+.ag-quien :where(ol) { margin: 0; padding: 0; list-style: none; }
+
+/* --------------------------------------------------------------------------
+   1. Presentación
+   -------------------------------------------------------------------------- */
+.ag-quien-intro { padding-top: 60px; }
+
+.ag-quien-intro__rejilla {
+	display: grid;
+	grid-template-columns: 7fr 5fr;
+	align-items: center;
+	gap: 80px;
+}
+
+.ag-quien-intro__lead {
+	color: var(--ag-azul-oscuro);
+	font-size: 1.2rem;
+	font-weight: 600;
+	line-height: 1.6;
+}
+
+.ag-quien-intro__media {
+	position: relative;
+	width: 100%;
+	max-width: 420px;
+	margin: 0 auto;
+}
+
+/* Firma */
+.ag-quien-firma {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	margin-top: 32px;
+	padding-top: 26px;
+	border-top: 1px solid #e3ecf5;
+}
+
+.ag-quien-firma__logo {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+	width: 58px;
+	height: 58px;
+	border-radius: 50%;
+	background: var(--ag-azul);
+	color: var(--ag-blanco);
+}
+
+.ag-quien-firma__logo .ag-logo { width: 62%; height: auto; }
+
+.ag-quien-firma strong {
+	display: block;
+	color: var(--ag-azul-oscuro);
+	font-family: var(--ag-fuente-titulos);
+	font-size: 1.05rem;
+	font-weight: 800;
+}
+
+.ag-quien-firma small {
+	color: var(--ag-texto);
+	font-size: 0.85rem;
+}
+
+/* Accesos a las facetas */
+.ag-facetas-nav {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 18px;
+	margin-top: 80px;
+}
+
+.ag-facetas-nav a,
+.ag-facetas-nav a:visited {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	padding: 18px 20px;
+	border: 1px solid #e3ecf5;
+	border-radius: 18px;
+	background: var(--ag-blanco);
+	color: var(--ag-azul-oscuro);
+	font-family: var(--ag-fuente-titulos);
+	font-weight: 700;
+	transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.ag-facetas-nav a:hover,
+.ag-facetas-nav a:focus {
+	color: var(--ag-azul-oscuro);
+	border-color: var(--color);
+	transform: translateY(-5px);
+	box-shadow: 0 18px 34px -18px color-mix(in srgb, var(--color) 70%, transparent);
+}
+
+.ag-facetas-nav__icono {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+	width: 48px;
+	height: 48px;
+	border-radius: 14px;
+	background: color-mix(in srgb, var(--color) 13%, white);
+	color: var(--color);
+	transition: background 0.3s ease, color 0.3s ease;
+}
+
+.ag-facetas-nav a:hover .ag-facetas-nav__icono {
+	background: var(--color);
+	color: var(--ag-blanco);
+}
+
+.ag-facetas-nav__icono .ag-icono-linea { width: 26px; height: 26px; }
+
+.ag-facetas-nav__texto small {
+	display: block;
+	color: var(--color);
+	font-size: 0.72rem;
+	letter-spacing: 0.1em;
+}
+
+/* --------------------------------------------------------------------------
+   2. Facetas (bloques en zigzag)
+   -------------------------------------------------------------------------- */
+.ag-faceta { overflow: hidden; }
+
+.ag-faceta:not(.ag-faceta--invertida) { background: var(--ag-gris-fondo); }
+
+/* Mancha de color suave detrás de la maqueta */
+.ag-faceta::before {
+	content: "";
+	position: absolute;
+	top: 50%;
+	right: -120px;
+	width: 520px;
+	height: 520px;
+	border-radius: 50%;
+	background: radial-gradient(circle, color-mix(in srgb, var(--color) 18%, transparent) 0%, transparent 70%);
+	transform: translateY(-50%);
+	pointer-events: none;
+}
+
+.ag-faceta--invertida::before { right: auto; left: -120px; }
+
+.ag-faceta__rejilla {
+	position: relative;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	align-items: center;
+	gap: 80px;
+}
+
+.ag-faceta--invertida .ag-faceta__texto { order: 2; }
+
+.ag-faceta__texto { position: relative; }
+
+.ag-faceta__num {
+	position: absolute;
+	top: -46px;
+	right: 0;
+	color: color-mix(in srgb, var(--color) 12%, transparent);
+	font-family: var(--ag-fuente-titulos);
+	font-size: 7rem;
+	font-weight: 800;
+	line-height: 1;
+	pointer-events: none;
+}
+
+.ag-faceta__etiqueta {
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
+	margin-bottom: 16px;
+	padding: 6px 16px 6px 6px;
+	border-radius: 50px;
+	background: color-mix(in srgb, var(--color) 12%, white);
+	color: var(--color);
+	font-family: var(--ag-fuente-titulos);
+	font-size: 0.8rem;
+	font-weight: 800;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+.ag-faceta__icono {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 34px;
+	height: 34px;
+	border-radius: 50%;
+	background: var(--color);
+	color: var(--ag-blanco);
+}
+
+.ag-faceta__icono .ag-icono-linea { width: 20px; height: 20px; }
+
+.ag-faceta .ag-titulo strong { color: var(--color); }
+
+.ag-faceta__puntos {
+	display: grid;
+	gap: 12px;
+	margin: 24px 0 26px;
+}
+
+.ag-faceta__puntos li {
+	display: flex;
+	align-items: flex-start;
+	gap: 12px;
+	color: var(--ag-azul-oscuro);
+	font-weight: 600;
+	line-height: 1.45;
+}
+
+.ag-faceta__puntos .ag-icono-linea {
+	flex-shrink: 0;
+	width: 24px;
+	height: 24px;
+	padding: 4px;
+	border-radius: 50%;
+	background: color-mix(in srgb, var(--color) 15%, white);
+	color: var(--color);
+	stroke-width: 4;
+}
+
+.ag-faceta__tags {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
+.ag-faceta__tags li {
+	padding: 6px 14px;
+	border: 1px solid color-mix(in srgb, var(--color) 30%, white);
+	border-radius: 30px;
+	background: var(--ag-blanco);
+	color: var(--ag-azul-oscuro);
+	font-size: 0.8rem;
+	font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   3. Maquetas visuales
+   -------------------------------------------------------------------------- */
+.ag-faceta__visual { position: relative; }
+
+.ag-mock {
+	position: relative;
+	overflow: visible;
+	border-radius: 20px;
+	background: var(--ag-blanco);
+	box-shadow: 0 40px 70px -35px rgba(15, 34, 56, 0.45), 0 0 0 1px rgba(15, 34, 56, 0.05);
+	transform: perspective(1200px) rotateY(-6deg) rotateX(3deg);
+	transition: transform 0.6s ease;
+}
+
+.ag-faceta--invertida .ag-mock { transform: perspective(1200px) rotateY(6deg) rotateX(3deg); }
+.ag-faceta__visual:hover .ag-mock { transform: perspective(1200px) rotateY(0) rotateX(0); }
+
+.ag-mock__barra {
+	display: flex;
+	align-items: center;
+	gap: 7px;
+	padding: 14px 18px;
+	border-bottom: 1px solid #edf2f7;
+	border-radius: 20px 20px 0 0;
+	background: #f7f9fc;
+}
+
+.ag-mock__barra span {
+	width: 11px;
+	height: 11px;
+	border-radius: 50%;
+	background: #ff6159;
+}
+
+.ag-mock__barra span:nth-child(2) { background: #ffbd2e; }
+.ag-mock__barra span:nth-child(3) { background: #28c941; }
+
+.ag-mock__barra em {
+	flex: 1;
+	margin-left: 12px;
+	padding: 4px 12px;
+	border-radius: 8px;
+	background: var(--ag-blanco);
+	color: #8796a8;
+	font-size: 0.75rem;
+	font-style: normal;
+	text-align: center;
+}
+
+.ag-mock__cuerpo { padding: 26px; }
+
+/* Panel del emprendedor */
+.ag-mock-panel__marca {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	margin-bottom: 26px;
+}
+
+.ag-mock-panel__logo {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+	width: 52px;
+	height: 52px;
+	border-radius: 14px;
+	background: var(--ag-azul);
+	color: var(--ag-blanco);
+}
+
+.ag-mock-panel__logo .ag-logo { width: 64%; height: auto; }
+
+.ag-mock-panel__marca strong {
+	display: block;
+	color: var(--ag-azul-oscuro);
+	font-family: var(--ag-fuente-titulos);
+	font-size: 1rem;
+}
+
+.ag-mock-panel__marca small { color: #8796a8; font-size: 0.78rem; }
+
+.ag-mock-panel__grafico {
+	display: flex;
+	align-items: flex-end;
+	gap: 12px;
+	height: 170px;
+	padding: 16px 18px 0;
+	border-radius: 14px;
+	background:
+		repeating-linear-gradient(0deg, #edf2f7 0 1px, transparent 1px 42px),
+		#fbfcfe;
+}
+
+.ag-mock-panel__grafico span {
+	flex: 1;
+	height: var(--h);
+	border-radius: 8px 8px 0 0;
+	background: linear-gradient(180deg, var(--color), color-mix(in srgb, var(--color) 45%, white));
+	transform-origin: bottom;
+	transition: transform 0.9s cubic-bezier(0.34, 1.3, 0.64, 1) calc(0.4s + var(--i) * 0.08s);
+}
+
+.ag-js [data-ag-revelar]:not(.is-visible) .ag-mock-panel__grafico span { transform: scaleY(0); }
+
+.ag-mock-panel__areas {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	margin-top: 20px;
+}
+
+.ag-mock-panel__areas span {
+	padding: 6px 12px;
+	border-radius: 30px;
+	background: var(--ag-gris-fondo);
+	color: var(--ag-azul-oscuro);
+	font-size: 0.75rem;
+	font-weight: 700;
+}
+
+.ag-mock-panel__areas span::before {
+	content: "";
+	display: inline-block;
+	width: 7px;
+	height: 7px;
+	margin-right: 6px;
+	border-radius: 50%;
+	background: var(--ag-azul);
+}
+
+.ag-mock-panel__areas span:nth-child(2)::before { background: #7a5cd6; }
+.ag-mock-panel__areas span:nth-child(3)::before { background: #e8566c; }
+
+/* Navegador del desarrollador web */
+.ag-mock-web i,
+.ag-mock-web b {
+	display: block;
+	border-radius: 6px;
+	background: #e6edf5;
+}
+
+.ag-mock-web__nav {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin-bottom: 20px;
+}
+
+.ag-mock-web__nav i { width: 50px; height: 8px; }
+.ag-mock-web__nav b { width: 34px; height: 34px; margin: 0 auto; border-radius: 50%; background: var(--color); }
+
+.ag-mock-web__hero {
+	display: grid;
+	justify-items: center;
+	gap: 10px;
+	padding: 34px 20px;
+	border-radius: 14px;
+	background: linear-gradient(135deg, var(--ag-azul), var(--ag-azul-oscuro));
+}
+
+.ag-mock-web__hero i { height: 12px; background: rgba(255, 255, 255, 0.85); }
+.ag-mock-web__hero i:first-child { width: 70%; }
+.ag-mock-web__hero i:nth-child(2) { width: 45%; background: rgba(255, 255, 255, 0.5); }
+.ag-mock-web__hero b { width: 110px; height: 26px; margin-top: 8px; border-radius: 20px; background: var(--ag-blanco); }
+
+.ag-mock-web__tarjetas {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 12px;
+	margin-top: 16px;
+}
+
+.ag-mock-web__tarjetas span {
+	height: 74px;
+	border-radius: 12px;
+	background:
+		linear-gradient(#e6edf5, #e6edf5) 12px 14px / 26px 26px no-repeat,
+		linear-gradient(#edf2f7, #edf2f7) 12px 50px / 60% 8px no-repeat,
+		#f7f9fc;
+}
+
+/* Móvil superpuesto */
+.ag-mock-web__movil {
+	position: absolute;
+	right: -26px;
+	bottom: -34px;
+	width: 108px;
+	padding: 10px 8px 12px;
+	border: 4px solid #1b2433;
+	border-radius: 20px;
+	background: var(--ag-blanco);
+	box-shadow: 0 24px 40px -18px rgba(15, 34, 56, 0.6);
+	animation: ag-flotar-chip 5s ease-in-out infinite;
+}
+
+.ag-mock-web__movil i { display: block; width: 26px; height: 5px; margin: 0 auto 8px; border-radius: 4px; background: #1b2433; }
+.ag-mock-web__movil b { display: block; height: 52px; margin-bottom: 7px; border-radius: 8px; background: linear-gradient(135deg, var(--ag-azul), var(--ag-azul-oscuro)); }
+.ag-mock-web__movil span { display: block; height: 22px; margin-top: 6px; border-radius: 6px; background: #edf2f7; }
+
+/* Aula del formador */
+.ag-mock-aula__diapositiva {
+	padding: 26px;
+	border-radius: 14px;
+	background: linear-gradient(135deg, var(--color), color-mix(in srgb, var(--color) 55%, #1b3a5c));
+	color: var(--ag-blanco);
+}
+
+.ag-mock-aula__diapositiva small {
+	font-size: 0.72rem;
+	font-weight: 700;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	opacity: 0.75;
+}
+
+.ag-mock-aula__diapositiva strong {
+	display: block;
+	margin: 6px 0 18px;
+	font-family: var(--ag-fuente-titulos);
+	font-size: 1.25rem;
+	line-height: 1.25;
+}
+
+.ag-mock-aula__diapositiva ul { display: grid; gap: 10px; }
+
+.ag-mock-aula__diapositiva li {
+	height: 8px;
+	border-radius: 6px;
+	background: rgba(255, 255, 255, 0.55);
+}
+
+.ag-mock-aula__diapositiva li:nth-child(1) { width: 85%; }
+.ag-mock-aula__diapositiva li:nth-child(2) { width: 65%; }
+.ag-mock-aula__diapositiva li:nth-child(3) { width: 75%; }
+
+.ag-mock-aula__progreso {
+	height: 8px;
+	margin: 22px 0;
+	border-radius: 8px;
+	background: #edf2f7;
+	overflow: hidden;
+}
+
+.ag-mock-aula__progreso span {
+	display: block;
+	width: 68%;
+	height: 100%;
+	border-radius: 8px;
+	background: var(--color);
+	transform-origin: left;
+	transition: transform 1.4s cubic-bezier(0.65, 0, 0.35, 1) 0.5s;
+}
+
+.ag-js [data-ag-revelar]:not(.is-visible) .ag-mock-aula__progreso span { transform: scaleX(0); }
+
+.ag-mock-aula__alumnos {
+	display: flex;
+	align-items: center;
+}
+
+.ag-mock-aula__alumnos i {
+	width: 36px;
+	height: 36px;
+	margin-right: -10px;
+	border: 3px solid var(--ag-blanco);
+	border-radius: 50%;
+	background: linear-gradient(135deg, #f29b38, #e8566c);
+}
+
+.ag-mock-aula__alumnos i:nth-child(2) { background: linear-gradient(135deg, #437eb6, #7fb2e0); }
+.ag-mock-aula__alumnos i:nth-child(3) { background: linear-gradient(135deg, #2bb3a0, #6fe0cf); }
+.ag-mock-aula__alumnos i:nth-child(4) { background: linear-gradient(135deg, #7a5cd6, #b39cf0); }
+.ag-mock-aula__alumnos i:nth-child(5) { background: linear-gradient(135deg, #1b3a5c, #437eb6); }
+
+.ag-mock-aula__alumnos em {
+	margin-left: 22px;
+	color: #8796a8;
+	font-size: 0.8rem;
+	font-style: normal;
+	font-weight: 600;
+}
+
+.ag-mock-aula__alumnos em::before {
+	content: "";
+	display: inline-block;
+	width: 8px;
+	height: 8px;
+	margin-right: 6px;
+	border-radius: 50%;
+	background: #28c941;
+	animation: ag-parpadeo 1.6s ease-in-out infinite;
+}
+
+/* Editor de código del programador */
+.ag-mock--oscuro { background: #0f1a2a; }
+.ag-mock--oscuro .ag-mock__barra { border-bottom-color: rgba(255, 255, 255, 0.06); background: #16243a; }
+.ag-mock--oscuro .ag-mock__barra em { background: rgba(255, 255, 255, 0.06); color: #8fa3bd; }
+
+.ag-mock-codigo {
+	margin: 0;
+	overflow-x: auto;
+	background: transparent;
+	color: #d6e2f0;
+	font-family: "JetBrains Mono", "Fira Code", Consolas, "Courier New", monospace;
+	font-size: 0.88rem;
+	line-height: 1.75;
+	white-space: pre;
+}
+
+.ag-mock-codigo .c-k { color: #c792ea; }
+.ag-mock-codigo .c-t { color: #6fe0cf; }
+.ag-mock-codigo .c-s { color: #f2c66d; }
+.ag-mock-codigo .c-f { color: #82aaff; }
+
+.ag-mock-codigo__cursor {
+	display: inline-block;
+	width: 9px;
+	height: 1.1em;
+	margin-left: 2px;
+	background: var(--color);
+	vertical-align: text-bottom;
+	animation: ag-parpadeo 1s steps(1) infinite;
+}
+
+@keyframes ag-parpadeo {
+	50% { opacity: 0; }
+}
+
+/* --------------------------------------------------------------------------
+   4. Trayectoria: carretera con curvas
+   -------------------------------------------------------------------------- */
+.ag-carretera {
+	--asfalto: #34465c;
+	--via: 18px;      /* ancho de la carretera */
+	--hueco: 30px;    /* separación entre tramos */
+	--margen: 70px;   /* espacio lateral para las curvas cerradas */
+	position: relative;
+	max-width: 1120px;
+	margin: 0 auto;
+	padding: 0 var(--margen);
+}
+
+.ag-carretera__tramo { position: relative; }
+.ag-carretera__tramo + .ag-carretera__tramo { margin-top: var(--hueco); }
+
+/* Tramo recto con ondulaciones (SVG) */
+.ag-carretera__via {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 80px;
+	pointer-events: none;
+}
+
+.ag-carretera__via svg { display: block; width: 100%; height: 100%; overflow: visible; }
+
+.ag-carretera__via path { fill: none; stroke-linecap: round; }
+.ag-carretera__arcen   { stroke: rgba(67, 126, 182, 0.16); stroke-width: 38px; }
+.ag-carretera__asfalto { stroke: var(--asfalto); stroke-width: var(--via); }
+.ag-carretera__linea   { stroke: rgba(255, 255, 255, 0.85); stroke-width: 2px; stroke-dasharray: 12 12; }
+
+/* Curva cerrada que une un tramo con el siguiente */
+.ag-carretera__tramo:not(.ag-carretera__tramo--final)::after,
+.ag-carretera__tramo:not(.ag-carretera__tramo--final)::before {
+	content: "";
+	position: absolute;
+	box-sizing: border-box;
+	border-style: solid;
+	border-color: var(--asfalto);
+	pointer-events: none;
+}
+
+/* Asfalto de la curva */
+.ag-carretera__tramo:not(.ag-carretera__tramo--final)::after {
+	top: calc(40px - var(--via) / 2);
+	left: calc(100% - 4px);
+	width: calc(var(--margen) - 6px);
+	height: calc(100% + var(--hueco) + var(--via));
+	border-width: var(--via) var(--via) var(--via) 0;
+	border-radius: 0 999px 999px 0;
+}
+
+/* Línea discontinua de la curva */
+.ag-carretera__tramo:not(.ag-carretera__tramo--final)::before {
+	z-index: 1;
+	top: 39px;
+	left: calc(100% - 4px);
+	width: calc(var(--margen) - 6px - var(--via) / 2 + 1px);
+	height: calc(100% + var(--hueco) + 2px);
+	border-width: 2px 2px 2px 0;
+	border-style: dashed;
+	border-color: rgba(255, 255, 255, 0.85);
+	border-radius: 0 999px 999px 0;
+}
+
+/* En los tramos de vuelta la curva va a la izquierda */
+.ag-carretera__tramo--vuelta:not(.ag-carretera__tramo--final)::after,
+.ag-carretera__tramo--vuelta:not(.ag-carretera__tramo--final)::before {
+	left: auto;
+	right: calc(100% - 4px);
+	border-radius: 999px 0 0 999px;
+}
+
+.ag-carretera__tramo--vuelta:not(.ag-carretera__tramo--final)::after { border-width: var(--via) 0 var(--via) var(--via); }
+.ag-carretera__tramo--vuelta:not(.ag-carretera__tramo--final)::before { border-width: 2px 0 2px 2px; }
+
+/* La curva cerrada aparece cuando termina de dibujarse su tramo */
+.ag-carretera__tramo::before,
+.ag-carretera__tramo::after { transition: opacity 0.5s ease 1.1s; }
+
+.ag-js .ag-carretera__tramo:has(> .ag-carretera__via[data-ag-revelar]:not(.is-visible))::before,
+.ag-js .ag-carretera__tramo:has(> .ag-carretera__via[data-ag-revelar]:not(.is-visible))::after {
+	opacity: 0;
+	transition: none;
+}
+
+/* La carretera "se asfalta" al aparecer.
+   El recorte se aplica al SVG interior: si se aplicara al elemento vigilado,
+   el navegador lo daría por invisible y nunca se activaría la animación. */
+.ag-js .ag-carretera__via[data-ag-revelar] {
+	transform: none;
+	transition: opacity 0.4s ease;
+}
+
+.ag-carretera__via svg {
+	clip-path: inset(0 0 0 0);
+	transition: clip-path 1.4s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.ag-js .ag-carretera__via[data-ag-revelar]:not(.is-visible) svg { clip-path: inset(0 100% 0 0); }
+.ag-js .ag-carretera__tramo--vuelta .ag-carretera__via[data-ag-revelar]:not(.is-visible) svg { clip-path: inset(0 0 0 100%); }
+
+/* Hitos */
+.ag-carretera__hitos {
+	position: relative;
+	z-index: 2;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 0 26px;
+}
+
+.ag-carretera__hito {
+	grid-row: 1;
+	grid-column: var(--col);
+	text-align: center;
+}
+
+.ag-carretera__pin {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 46px;
+	height: 46px;
+	margin: 17px auto 0;
+	box-sizing: border-box;
+	border: 4px solid var(--ag-blanco);
+	border-radius: 50%;
+	background: var(--color);
+	color: var(--ag-blanco);
+	font-family: var(--ag-fuente-titulos);
+	font-size: 1rem;
+	font-weight: 800;
+	box-shadow: 0 8px 18px -6px color-mix(in srgb, var(--color) 80%, transparent);
+	transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.ag-carretera__hito:hover .ag-carretera__pin { transform: scale(1.15); }
+
+/* El último hito ("Hoy") late suavemente */
+.ag-carretera__hito--hoy .ag-carretera__pin::after {
+	content: "";
+	position: absolute;
+	inset: -4px;
+	border-radius: 50%;
+	border: 2px solid var(--color);
+	animation: ag-latido 2s ease-out infinite;
+}
+
+@keyframes ag-latido {
+	from { transform: scale(1); opacity: 0.8; }
+	to   { transform: scale(1.9); opacity: 0; }
+}
+
+.ag-carretera__tarjeta {
+	position: relative;
+	margin-top: 18px;
+	padding: 18px 20px;
+	border: 1px solid #e3ecf5;
+	border-top: 3px solid var(--color);
+	border-radius: 16px;
+	background: var(--ag-blanco);
+	text-align: left;
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ag-carretera__tarjeta::before {
+	content: "";
+	position: absolute;
+	top: -9px;
+	left: 50%;
+	width: 12px;
+	height: 12px;
+	background: var(--color);
+	transform: translateX(-50%) rotate(45deg);
+	border-radius: 2px;
+}
+
+.ag-carretera__hito:hover .ag-carretera__tarjeta {
+	transform: translateY(-4px);
+	box-shadow: var(--ag-sombra);
+}
+
+.ag-carretera__etapa {
+	color: var(--color);
+	font-family: var(--ag-fuente-titulos);
+	font-size: 0.72rem;
+	font-weight: 800;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+}
+
+.ag-carretera__tarjeta h3 {
+	margin: 4px 0 6px;
+	color: var(--ag-azul-oscuro);
+	font-family: var(--ag-fuente-titulos);
+	font-size: 1.02rem;
+	font-weight: 800;
+	line-height: 1.3;
+}
+
+.ag-carretera__tarjeta p {
+	margin: 0;
+	font-size: 0.88rem;
+	line-height: 1.6;
+}
+
+/* --------------------------------------------------------------------------
+   4b. Proyecto destacado: Explora Andalucía
+   -------------------------------------------------------------------------- */
+.ag-proyecto {
+	overflow: hidden;
+	color: rgba(255, 255, 255, 0.78);
+	background:
+		radial-gradient(circle at 85% 15%, rgba(242, 155, 56, 0.2), transparent 45%),
+		radial-gradient(circle at 5% 95%, rgba(67, 126, 182, 0.4), transparent 50%),
+		var(--ag-azul-noche);
+}
+
+.ag-proyecto__rejilla {
+	display: grid;
+	grid-template-columns: 5fr 6fr;
+	align-items: center;
+	gap: 70px;
+}
+
+.ag-proyecto .ag-etiqueta { color: #f5b56b; }
+
+.ag-proyecto .ag-titulo {
+	margin-bottom: 6px;
+	font-size: clamp(2.1rem, 4.4vw, 3.2rem);
+	background: linear-gradient(90deg, #ffffff 0%, #ffd9a8 100%);
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+}
+
+.ag-proyecto__lema {
+	margin-bottom: 18px;
+	color: #f5b56b;
+	font-family: var(--ag-fuente-titulos);
+	font-size: 1.15rem;
+	font-style: italic;
+	font-weight: 600;
+}
+
+.ag-proyecto__claves {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	margin: 22px 0 30px;
+}
+
+.ag-proyecto__claves li {
+	padding: 6px 14px;
+	border: 1px solid rgba(255, 255, 255, 0.16);
+	border-radius: 30px;
+	background: rgba(255, 255, 255, 0.06);
+	color: var(--ag-blanco);
+	font-size: 0.8rem;
+	font-weight: 600;
+}
+
+.ag-proyecto__claves li::before {
+	content: "";
+	display: inline-block;
+	width: 6px;
+	height: 6px;
+	margin-right: 8px;
+	border-radius: 50%;
+	background: #f29b38;
+	vertical-align: 2px;
+}
+
+.ag-proyecto__acciones {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 14px 22px;
+}
+
+.ag-icono-externo { width: 18px; height: 18px; }
+
+.ag-proyecto__tecnologia {
+	color: rgba(255, 255, 255, 0.55);
+	font-size: 0.85rem;
+}
+
+/* Maqueta de la web enlazada */
+.ag-proyecto__visual {
+	position: relative;
+	display: block;
+}
+
+.ag-mock--proyecto {
+	box-shadow: 0 50px 90px -40px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.08);
+	transform: perspective(1200px) rotateY(-8deg) rotateX(4deg);
+}
+
+.ag-proyecto__visual:hover .ag-mock--proyecto,
+.ag-proyecto__visual:focus .ag-mock--proyecto {
+	transform: perspective(1200px) rotateY(0) rotateX(0) scale(1.02);
+}
+
+.ag-mock-explora { padding: 16px; }
+
+.ag-mock-explora__hero {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 4px;
+	height: 230px;
+	overflow: hidden;
+	border-radius: 14px;
+	background: linear-gradient(180deg, #f8bd73 0%, #ec7a52 38%, #b34f78 62%, #3e3f7a 82%, #1b3a5c 100%);
+	color: var(--ag-blanco);
+	text-align: center;
+	isolation: isolate;
+}
+
+/* Colinas en silueta */
+.ag-mock-explora__hero::before,
+.ag-mock-explora__hero::after {
+	content: "";
+	position: absolute;
+	z-index: -1;
+	bottom: -60px;
+	border-radius: 50% 50% 0 0;
+}
+
+.ag-mock-explora__hero::before { left: -15%; width: 75%; height: 140px; background: #22324a; }
+.ag-mock-explora__hero::after  { right: -20%; width: 80%; height: 120px; background: #182538; }
+
+.ag-mock-explora__sol {
+	position: absolute;
+	z-index: -2;
+	top: 26px;
+	right: 22%;
+	width: 64px;
+	height: 64px;
+	border-radius: 50%;
+	background: #ffe2a8;
+	box-shadow: 0 0 40px 14px rgba(255, 226, 168, 0.55);
+	animation: ag-flotar-chip 6s ease-in-out infinite;
+}
+
+.ag-mock-explora__hero small {
+	font-size: 0.66rem;
+	font-weight: 700;
+	letter-spacing: 0.2em;
+	text-transform: uppercase;
+	opacity: 0.85;
+}
+
+.ag-mock-explora__hero strong {
+	font-family: var(--ag-fuente-titulos);
+	font-size: 1.9rem;
+	font-weight: 800;
+	line-height: 1.1;
+	text-shadow: 0 4px 18px rgba(0, 0, 0, 0.3);
+}
+
+.ag-mock-explora__hero span {
+	font-size: 0.9rem;
+	font-style: italic;
+	opacity: 0.9;
+}
+
+.ag-mock-explora__provincias {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 8px;
+	margin-top: 14px;
+}
+
+.ag-mock-explora__provincias li {
+	padding: 8px 4px;
+	border-radius: 8px;
+	background: var(--ag-gris-fondo);
+	color: var(--ag-azul-oscuro);
+	font-size: 0.74rem;
+	font-weight: 700;
+	text-align: center;
+	transition: background 0.3s ease, color 0.3s ease;
+}
+
+.ag-proyecto__visual:hover .ag-mock-explora__provincias li:nth-child(odd) { background: #fde6cf; color: #b35c1c; }
+
+.ag-mock-explora__captura {
+	display: block;
+	width: 100%;
+	height: auto;
+	border-radius: 0 0 20px 20px;
+}
+
+.ag-proyecto__sello {
+	position: absolute;
+	top: -16px;
+	right: -6px;
+	z-index: 3;
+	padding: 9px 16px;
+	border-radius: 30px;
+	background: #f29b38;
+	color: var(--ag-blanco);
+	font-family: var(--ag-fuente-titulos);
+	font-size: 0.8rem;
+	font-weight: 800;
+	box-shadow: 0 12px 24px -10px rgba(242, 155, 56, 0.9);
+	transform: rotate(6deg);
+	transition: transform 0.3s ease;
+}
+
+.ag-proyecto__visual:hover .ag-proyecto__sello { transform: rotate(0) scale(1.08); }
+
+/* --------------------------------------------------------------------------
+   4c. Titulaciones (compactas, solo texto)
+   -------------------------------------------------------------------------- */
+.ag-titulaciones { padding: 90px 0; }
+
+.ag-cabecera-seccion--compacta { margin-bottom: 40px; }
+
+/* Carrusel infinito de derecha a izquierda */
+.ag-carrusel {
+	overflow: hidden;
+	padding: 10px 0 30px;
+	-webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+	mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.ag-carrusel__pista {
+	display: flex;
+	width: max-content;
+	animation: ag-marquesina var(--duracion, 40s) linear infinite;
+}
+
+/* Se detiene al pasar el ratón o al navegar con el teclado */
+.ag-carrusel:hover .ag-carrusel__pista,
+.ag-carrusel:focus-within .ag-carrusel__pista {
+	animation-play-state: paused;
+}
+
+.ag-carrusel__lista {
+	display: flex;
+	flex-shrink: 0;
+}
+
+.ag-carrusel__lista .ag-titulacion {
+	flex: 0 0 320px;
+	box-sizing: border-box;
+	margin-right: 20px;
+}
+
+.ag-titulacion {
+	position: relative;
+	overflow: hidden;
+	padding: 22px 24px 22px 28px;
+	border: 1px solid #e3ecf5;
+	border-radius: 16px;
+	background: var(--ag-blanco);
+	transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.ag-titulacion::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	width: 4px;
+	background: linear-gradient(180deg, var(--ag-azul), #2bb3a0);
+}
+
+.ag-titulacion__num {
+	position: absolute;
+	top: 10px;
+	right: 16px;
+	color: rgba(67, 126, 182, 0.1);
+	font-family: var(--ag-fuente-titulos);
+	font-size: 2.4rem;
+	font-weight: 800;
+	line-height: 1;
+}
+
+.ag-titulacion:hover {
+	border-color: rgba(67, 126, 182, 0.35);
+	transform: translateY(-4px);
+	box-shadow: var(--ag-sombra);
+}
+
+.ag-titulacion__tipo {
+	display: inline-block;
+	padding: 3px 10px;
+	border-radius: 20px;
+	background: rgba(67, 126, 182, 0.1);
+	color: var(--ag-azul);
+	font-family: var(--ag-fuente-titulos);
+	font-size: 0.68rem;
+	font-weight: 800;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+}
+
+.ag-titulacion h3 {
+	margin: 10px 0 4px;
+	color: var(--ag-azul-oscuro);
+	font-family: var(--ag-fuente-titulos);
+	font-size: 1.05rem;
+	font-weight: 800;
+	line-height: 1.3;
+}
+
+.ag-titulacion__entidad {
+	display: block;
+	color: #8796a8;
+	font-size: 0.82rem;
+	font-weight: 600;
+}
+
+.ag-titulacion p {
+	margin: 8px 0 0;
+	font-size: 0.9rem;
+	line-height: 1.55;
+}
+
+/* --------------------------------------------------------------------------
+   5. Valores
+   -------------------------------------------------------------------------- */
+.ag-trayectoria { background: var(--ag-gris-fondo); }
+
+.ag-valores { background: var(--ag-gris-fondo); }
+
+.ag-valores__rejilla {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 24px;
+}
+
+.ag-valor {
+	padding: 34px 26px;
+	border-radius: 22px;
+	background: var(--ag-blanco);
+	text-align: center;
+	box-shadow: 0 10px 30px -20px rgba(15, 34, 56, 0.3);
+	transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.ag-valor:hover {
+	transform: translateY(-8px);
+	box-shadow: var(--ag-sombra);
+}
+
+.ag-valor__icono {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 70px;
+	height: 70px;
+	margin-bottom: 20px;
+	border-radius: 50%;
+	background: linear-gradient(135deg, var(--ag-azul), var(--ag-azul-oscuro));
+	color: var(--ag-blanco);
+	box-shadow: 0 14px 30px -12px rgba(67, 126, 182, 0.8);
+	transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.ag-valor:hover .ag-valor__icono { transform: rotate(-10deg) scale(1.1); }
+.ag-valor__icono .ag-icono-linea { width: 34px; height: 34px; }
+
+.ag-valor h3 {
+	margin-bottom: 10px;
+	color: var(--ag-azul-oscuro);
+	font-family: var(--ag-fuente-titulos);
+	font-size: 1.15rem;
+	font-weight: 800;
+}
+
+.ag-valor p { margin: 0; font-size: 0.95rem; }
+
+/* La CTA reutiliza los estilos de la portada; se acerca a la sección de valores */
+.ag-quien .ag-cta { padding-top: 20px; }
+
+/* --------------------------------------------------------------------------
+   6. Responsive
+   -------------------------------------------------------------------------- */
+@media (max-width: 1100px) {
+	.ag-facetas-nav,
+	.ag-valores__rejilla { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 991px) {
+	.ag-quien-intro__rejilla,
+	.ag-faceta__rejilla,
+	.ag-proyecto__rejilla { grid-template-columns: 1fr; gap: 56px; }
+	.ag-proyecto__visual { max-width: 560px; margin: 0 auto; width: 100%; }
+	.ag-mock--proyecto { transform: none; }
+	.ag-quien-intro__media { max-width: 340px; order: -1; }
+	.ag-faceta--invertida .ag-faceta__texto { order: 0; }
+	.ag-faceta__visual { max-width: 560px; margin: 0 auto; width: 100%; }
+	.ag-mock,
+	.ag-faceta--invertida .ag-mock { transform: none; }
+	.ag-mock-web__movil { right: -10px; }
+	.ag-faceta__num { font-size: 5rem; top: -30px; }
+
+
+	/* Carretera vertical en tablet y móvil */
+	.ag-carretera { padding: 0; }
+	.ag-carretera::before,
+	.ag-carretera::after {
+		content: "";
+		position: absolute;
+		top: 10px;
+		bottom: 10px;
+		pointer-events: none;
+	}
+	.ag-carretera::before { left: 14px; width: var(--via); border-radius: 9px; background: var(--asfalto); box-shadow: 0 0 0 10px rgba(67, 126, 182, 0.12); }
+	.ag-carretera::after  { left: 22px; width: 2px; background: repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.85) 0 12px, transparent 12px 24px); }
+	.ag-carretera__via,
+	.ag-carretera__tramo::before,
+	.ag-carretera__tramo::after { display: none; }
+	.ag-carretera__tramo + .ag-carretera__tramo { margin-top: 18px; }
+	.ag-carretera__hitos { grid-template-columns: 1fr; gap: 18px; }
+	.ag-carretera__hito {
+		display: grid;
+		grid-template-columns: 46px 1fr;
+		align-items: start;
+		gap: 16px;
+		grid-row: auto;
+		grid-column: auto;
+	}
+	.ag-carretera__pin { margin: 6px 0 0; }
+	.ag-carretera__tarjeta { margin-top: 0; }
+	.ag-carretera__tarjeta::before { top: 22px; left: -6px; transform: rotate(45deg); }
+}
+
+@media (max-width: 640px) {
+	.ag-quien-intro__media { max-width: 260px; }
+	.ag-facetas-nav { gap: 12px; margin-top: 56px; }
+	.ag-facetas-nav a { flex-direction: column; align-items: flex-start; gap: 10px; padding: 16px; font-size: 0.9rem; }
+	.ag-valores__rejilla { grid-template-columns: 1fr; }
+	.ag-mock__cuerpo { padding: 18px; }
+	.ag-mock-codigo { font-size: 0.74rem; }
+	.ag-mock-panel__grafico { height: 130px; gap: 8px; }
+	.ag-mock-web__movil { width: 86px; bottom: -24px; right: -6px; }
+	.ag-mock-explora__hero { height: 180px; }
+	.ag-mock-explora__hero strong { font-size: 1.5rem; }
+	.ag-mock-explora__provincias { gap: 5px; }
+	.ag-mock-explora__provincias li { padding: 6px 2px; font-size: 0.6rem; }
+	.ag-titulaciones { padding: 64px 0; }
+	.ag-carrusel__lista .ag-titulacion { flex-basis: 270px; margin-right: 14px; }
+	.ag-proyecto__sello { right: 4px; }
+}
+
+/* Sin movimiento: el carrusel se convierte en una fila desplazable a mano */
+@media (prefers-reduced-motion: reduce) {
+	.ag-carrusel { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
+	.ag-carrusel__lista[aria-hidden="true"],
+	.ag-carrusel__lista .ag-titulacion[aria-hidden="true"] { display: none; }
+}

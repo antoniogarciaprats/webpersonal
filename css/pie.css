@@ -1,0 +1,414 @@
+/* ==========================================================================
+   Pie de página profesional – Tema antoniogarciaprats (Underscores)
+   Usa las variables definidas en css/cabecera.css
+   ========================================================================== */
+
+.ag-pie {
+	--ag-pie-fondo: #0f2238;
+	--ag-pie-barra: #05090f;
+	position: relative;
+	margin-top: 60px;
+	color: var(--ag-texto-suave);
+	font-family: var(--ag-fuente-texto);
+}
+
+/* --------------------------------------------------------------------------
+   1. Olas de transición (el pie "sube" hacia el contenido)
+   -------------------------------------------------------------------------- */
+.ag-pie__olas {
+	height: 110px;
+	margin-bottom: -1px;
+	line-height: 0;
+}
+
+.ag-pie__olas svg {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+.ag-pie-ola { will-change: transform; }
+.ag-pie-ola--1 { fill: rgba(127, 178, 224, 0.35); animation: ag-pie-ola-1 26s linear infinite; }
+.ag-pie-ola--2 { fill: rgba(67, 126, 182, 0.65);  animation: ag-pie-ola-2 19s linear infinite reverse; }
+.ag-pie-ola--3 { fill: var(--ag-pie-fondo);       animation: ag-pie-ola-3 22s linear infinite; }
+
+/* Cada desplazamiento coincide con la longitud de su onda: bucle sin saltos */
+@keyframes ag-pie-ola-1 { from { transform: translateX(0); } to { transform: translateX(120px); } }
+@keyframes ag-pie-ola-2 { from { transform: translateX(0); } to { transform: translateX(95px); } }
+@keyframes ag-pie-ola-3 { from { transform: translateX(0); } to { transform: translateX(100px); } }
+
+/* --------------------------------------------------------------------------
+   2. Cuerpo del pie
+   -------------------------------------------------------------------------- */
+.ag-pie__cuerpo {
+	position: relative;
+	padding: 20px 0 50px;
+	text-align: center;
+	background:
+		radial-gradient(ellipse at 50% 110%, rgba(67, 126, 182, 0.35) 0%, rgba(67, 126, 182, 0) 60%),
+		var(--ag-pie-fondo);
+}
+
+.ag-pie__titulo {
+	margin: 0 0 10px;
+	font-family: var(--ag-fuente-titulos);
+	font-size: clamp(1.5rem, 3vw, 2rem);
+	font-weight: 800;
+	color: var(--ag-blanco);
+}
+
+.ag-pie__texto {
+	max-width: 520px;
+	margin: 0 auto 64px;
+	line-height: 1.65;
+}
+
+/* --------------------------------------------------------------------------
+   3. Redes sociales
+   -------------------------------------------------------------------------- */
+.ag-redes {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 20px;
+	margin: 0 0 70px;
+	padding: 0;
+	list-style: none;
+}
+
+/* Flotación suave y desfasada de cada icono */
+.ag-redes li {
+	animation: ag-flotar 3.6s ease-in-out infinite;
+	animation-delay: calc(var(--i, 0) * -0.6s);
+}
+
+@keyframes ag-flotar {
+	0%, 100% { transform: translateY(0); }
+	50%      { transform: translateY(-6px); }
+}
+
+.ag-red {
+	--red-fondo: var(--ag-azul);
+	--red-icono: #ffffff;
+}
+
+.ag-red,
+.ag-red:visited {
+	position: relative;
+	display: block;
+	color: var(--ag-blanco);
+	text-decoration: none;
+	outline: none;
+}
+
+/* Círculo del icono */
+.ag-red__icono {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-sizing: border-box;
+	width: 58px;
+	height: 58px;
+	border: 2px solid rgba(255, 255, 255, 0.22);
+	border-radius: 50%;
+	background: rgba(255, 255, 255, 0.04);
+	color: var(--ag-blanco);
+	overflow: hidden;
+	isolation: isolate;
+	transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease, color 0.3s ease;
+}
+
+/* Efecto "líquido": una ola con el color de la red que sube y rellena el círculo */
+.ag-red__icono::before {
+	content: "";
+	position: absolute;
+	top: 135%;
+	left: -50%;
+	z-index: -1;
+	width: 200%;
+	height: 200%;
+	border-radius: 42%;
+	background: var(--red-fondo);
+	animation: ag-liquido 5s linear infinite;
+	transition: top 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes ag-liquido {
+	to { transform: rotate(360deg); }
+}
+
+.ag-red__icono svg {
+	width: 22px;
+	height: 22px;
+	fill: currentColor;
+	transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.ag-red:hover .ag-red__icono,
+.ag-red:focus-visible .ag-red__icono {
+	transform: translateY(-6px);
+	border-color: transparent;
+	color: var(--red-icono);
+	box-shadow: 0 14px 26px -8px rgba(0, 0, 0, 0.6);
+}
+
+.ag-red:hover .ag-red__icono::before,
+.ag-red:focus-visible .ag-red__icono::before {
+	top: -45%;
+}
+
+.ag-red:hover .ag-red__icono svg,
+.ag-red:focus-visible .ag-red__icono svg {
+	transform: scale(1.18) rotate(-10deg);
+}
+
+/* Etiqueta con el nombre de la red */
+.ag-red__nombre {
+	position: absolute;
+	bottom: calc(100% + 16px);
+	left: 50%;
+	padding: 5px 12px;
+	border-radius: 6px;
+	background: var(--ag-blanco);
+	color: var(--ag-azul-oscuro);
+	font-family: var(--ag-fuente-titulos);
+	font-size: 0.75rem;
+	font-weight: 700;
+	letter-spacing: 0.04em;
+	white-space: nowrap;
+	opacity: 0;
+	pointer-events: none;
+	transform: translate(-50%, 8px);
+	transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.ag-red__nombre::after {
+	content: "";
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	margin-left: -6px;
+	border: 6px solid transparent;
+	border-top-color: var(--ag-blanco);
+}
+
+.ag-red:hover .ag-red__nombre,
+.ag-red:focus-visible .ag-red__nombre {
+	opacity: 1;
+	transform: translate(-50%, 0);
+}
+
+/* Color de cada red */
+.ag-red--linkedin  { --red-fondo: #0a66c2; }
+.ag-red--github    { --red-fondo: #6e5494; }
+.ag-red--facebook  { --red-fondo: #1877f2; }
+.ag-red--instagram { --red-fondo: linear-gradient(45deg, #f58529, #dd2a7b, #8134af, #515bd4); }
+.ag-red--youtube   { --red-fondo: #ff0000; }
+.ag-red--x         { --red-fondo: #ffffff; --red-icono: #000000; }
+
+/* --------------------------------------------------------------------------
+   4. Logo con anillo punteado giratorio
+   -------------------------------------------------------------------------- */
+.ag-sello {
+	position: relative;
+	width: 160px;
+	height: 160px;
+	margin: 0 auto 10px;
+}
+
+/* Anillo punteado decorativo entre el texto y el logo */
+.ag-sello::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	border: 1px dashed rgba(127, 178, 224, 0.45);
+	border-radius: 50%;
+	animation: ag-girar 60s linear infinite reverse;
+}
+
+.ag-sello:hover::before {
+	animation-play-state: paused;
+}
+
+@keyframes ag-girar {
+	to { transform: rotate(360deg); }
+}
+
+/* Logo: sin fondo propio (se ve el del pie) y letras blancas */
+.ag-sello__logo,
+.ag-sello__logo:visited {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 118px;
+	height: 118px;
+	border-radius: 50%;
+	background: transparent;
+	color: var(--ag-blanco);
+	transform: translate(-50%, -50%);
+	transition: transform 0.4s ease, color 0.4s ease;
+}
+
+.ag-sello__logo .ag-logo {
+	display: block;
+	width: 66%;
+	height: auto;
+}
+
+.ag-sello__logo:hover,
+.ag-sello__logo:focus {
+	color: var(--ag-azul-claro);
+	transform: translate(-50%, -50%) scale(1.08);
+}
+
+/* --------------------------------------------------------------------------
+   5. Barra inferior negra: copyright + menú legal
+   -------------------------------------------------------------------------- */
+.ag-pie__barra {
+	background: var(--ag-pie-barra);
+	border-top: 1px solid rgba(255, 255, 255, 0.06);
+	font-size: 0.85rem;
+}
+
+.ag-pie__barra .ag-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	text-align: center;
+	min-height: 62px;
+	padding-top: 14px;
+	padding-bottom: 14px;
+}
+
+.ag-pie__copyright {
+	margin: 0;
+	color: rgba(255, 255, 255, 0.6);
+}
+
+.ag-pie__copyright strong {
+	color: var(--ag-blanco);
+	font-family: var(--ag-fuente-titulos);
+	font-weight: 600;
+	letter-spacing: 0.02em;
+}
+
+.ag-pie__sep {
+	margin: 0 6px;
+	color: var(--ag-azul-claro);
+}
+
+.ag-pie__legal {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 6px 24px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.ag-pie__legal a,
+.ag-pie__legal a:visited {
+	position: relative;
+	color: rgba(255, 255, 255, 0.6);
+	text-decoration: none;
+	transition: color 0.3s ease;
+}
+
+.ag-pie__legal a::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: -4px;
+	height: 1px;
+	background: var(--ag-azul-claro);
+	transform: scaleX(0);
+	transition: transform 0.3s ease;
+}
+
+.ag-pie__legal a:hover,
+.ag-pie__legal a:focus {
+	color: var(--ag-blanco);
+}
+
+.ag-pie__legal a:hover::after,
+.ag-pie__legal a:focus::after {
+	transform: scaleX(1);
+}
+
+/* Sin franja blanca bajo el pie: el blanco del contenido pasa a #page y el
+   fondo general de la página es el de la barra. Así, cualquier elemento que
+   WordPress o un plugin añada después del pie queda del color de la barra. */
+html {
+	background-color: #05090f;
+}
+
+body,
+body.custom-background {
+	background-color: transparent;
+}
+
+#page {
+	background-color: var(--ag-fondo-pagina, #ffffff);
+}
+
+/* --------------------------------------------------------------------------
+   6. Animación de entrada (la activa js/pie.js al llegar al pie)
+   -------------------------------------------------------------------------- */
+.ag-pie--animar .ag-redes li {
+	opacity: 0;
+	animation: none;
+}
+
+.ag-pie--animar.is-visible .ag-redes li {
+	animation:
+		ag-aparecer 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) calc(var(--i, 0) * 0.1s) both,
+		ag-flotar 3.6s ease-in-out calc(0.8s + var(--i, 0) * 0.1s) infinite;
+}
+
+@keyframes ag-aparecer {
+	from { opacity: 0; transform: translateY(30px) scale(0.6); }
+	to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.ag-pie--animar .ag-sello {
+	opacity: 0;
+	transform: scale(0.85) rotate(-20deg);
+	transition: opacity 0.9s ease 0.4s, transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s;
+}
+
+.ag-pie--animar.is-visible .ag-sello {
+	opacity: 1;
+	transform: none;
+}
+
+/* --------------------------------------------------------------------------
+   7. Responsive y accesibilidad
+   -------------------------------------------------------------------------- */
+@media (max-width: 575px) {
+	.ag-pie__olas { height: 70px; }
+	.ag-redes { gap: 10px; }
+	.ag-red__icono { width: 46px; height: 46px; }
+	.ag-red__icono svg { width: 19px; height: 19px; }
+	.ag-sello { width: 136px; height: 136px; }
+	.ag-sello__logo { width: 100px; height: 100px; }
+	.ag-pie__texto { margin-bottom: 48px; }
+	.ag-pie__sep { display: none; }
+	.ag-pie__reservados { display: block; margin-top: 2px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.ag-pie-ola,
+	.ag-redes li,
+	.ag-red__icono::before,
+	.ag-sello::before {
+		animation: none;
+	}
+}

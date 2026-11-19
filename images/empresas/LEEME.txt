@@ -1,0 +1,6 @@
+Coloca aquí los logos de los centros y empresas de formación (PNG, JPG, SVG o WEBP).
+- Aparecerán automáticamente en la cinta de logos de la portada, en orden alfabético.
+- El nombre del archivo se usa como texto alternativo:
+  centro-formacion-sur.png  ->  "Centro formacion sur"
+- Recomendado: fondo transparente, unos 400 x 160 px.
+Mientras esta carpeta no tenga imágenes, se muestran recuadros de ejemplo.

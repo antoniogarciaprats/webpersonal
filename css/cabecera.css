@@ -1,0 +1,645 @@
+/* ==========================================================================
+   Cabecera profesional – Tema antoniogarciaprats (Underscores)
+   Autor: Antonio García Prats · antoniogarciaprats.es
+   ========================================================================== */
+
+:root {
+	--ag-azul: #437eb6;          /* Azul de marca */
+	--ag-azul-oscuro: #1b3a5c;
+	--ag-azul-noche: #0f2238;
+	--ag-azul-claro: #7fb2e0;
+	--ag-blanco: #ffffff;
+	--ag-texto-suave: rgba(255, 255, 255, 0.82);
+	--ag-fondo-pagina: #ffffff;  /* Color de fondo del contenido: la última ola usa este color */
+	--ag-ola-frontal: var(--ag-fondo-pagina);
+	--ag-fuente-titulos: "Montserrat", "Poppins", system-ui, sans-serif;
+	--ag-fuente-texto: "Open Sans", "Inter", system-ui, sans-serif;
+	--ag-ancho: 1200px;
+	--ag-transicion: 0.3s ease;
+}
+
+.ag-container {
+	width: 100%;
+	max-width: var(--ag-ancho);
+	margin: 0 auto;
+	padding: 0 24px;
+	box-sizing: border-box;
+}
+
+/* Compatibilidad con style.css de Underscores (evita enlaces visitados en morado) */
+.ag-topbar a:visited { color: var(--ag-texto-suave); }
+.ag-nav__menu a:visited,
+.ag-monograma:visited,
+.ag-btn--secundario:visited { color: var(--ag-blanco); }
+.ag-nav__menu .sub-menu a:visited,
+.ag-btn--primario:visited { color: var(--ag-azul-oscuro); }
+
+/* --------------------------------------------------------------------------
+   1. Barra superior
+   -------------------------------------------------------------------------- */
+.ag-topbar {
+	background: var(--ag-azul-noche);
+	color: var(--ag-texto-suave);
+	font-family: var(--ag-fuente-texto);
+	font-size: 0.875rem;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+	position: relative;
+	z-index: 20;
+}
+
+.ag-topbar .ag-container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	min-height: 44px;
+	gap: 16px;
+}
+
+.ag-topbar__contacto {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 28px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.ag-topbar__contacto a,
+.ag-topbar__redes a {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	color: var(--ag-texto-suave);
+	text-decoration: none;
+	transition: color var(--ag-transicion);
+}
+
+.ag-topbar__contacto a:hover,
+.ag-topbar__contacto a:focus,
+.ag-topbar__redes a:hover,
+.ag-topbar__redes a:focus {
+	color: var(--ag-blanco);
+}
+
+.ag-icono {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 26px;
+	height: 26px;
+	border-radius: 50%;
+	background: var(--ag-azul);
+	color: var(--ag-blanco);
+	flex-shrink: 0;
+}
+
+.ag-icono svg {
+	width: 14px;
+	height: 14px;
+	fill: currentColor;
+}
+
+.ag-topbar__redes {
+	display: flex;
+	gap: 14px;
+}
+
+.ag-topbar__redes svg {
+	width: 16px;
+	height: 16px;
+	fill: currentColor;
+}
+
+/* --------------------------------------------------------------------------
+   2. Cabecera hero con imagen + capa azul
+   -------------------------------------------------------------------------- */
+.ag-hero {
+	position: relative;
+	min-height: 820px;
+	display: flex;
+	flex-direction: column;
+	color: var(--ag-blanco);
+	background-color: var(--ag-azul-oscuro);
+	background-size: cover;
+	background-position: center;
+	overflow: hidden;
+	isolation: isolate;
+}
+
+/* Capa azul semitransparente: deja ver la imagen por debajo */
+.ag-hero::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	background:
+		linear-gradient(180deg, rgba(15, 34, 56, 0.88) 0%, rgba(15, 34, 56, 0.35) 22%, rgba(15, 34, 56, 0) 40%),
+		linear-gradient(135deg, rgba(27, 58, 92, 0.85) 0%, rgba(67, 126, 182, 0.62) 55%, rgba(67, 126, 182, 0.45) 100%);
+}
+
+/* --------------------------------------------------------------------------
+   3. Navegación: menú izquierdo · logo centrado · menú derecho
+   -------------------------------------------------------------------------- */
+.ag-nav {
+	position: relative;
+	z-index: 10;
+	padding-top: 22px;
+}
+
+.ag-nav .ag-container {
+	display: grid;
+	grid-template-columns: 1fr auto 1fr;
+	align-items: center;
+	gap: 32px;
+}
+
+.ag-nav__menu {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	font-family: var(--ag-fuente-titulos);
+	font-size: 0.8rem;
+	font-weight: 600;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+}
+
+.ag-nav__izquierda .ag-nav__menu { justify-content: flex-end; }
+.ag-nav__derecha  .ag-nav__menu { justify-content: flex-start; }
+
+.ag-nav__menu li { position: relative; }
+
+.ag-nav__menu a {
+	display: block;
+	padding: 10px 14px;
+	color: var(--ag-blanco);
+	text-decoration: none;
+	position: relative;
+	transition: color var(--ag-transicion);
+}
+
+/* Subrayado animado */
+.ag-nav__menu > li > a::after {
+	content: "";
+	position: absolute;
+	left: 14px;
+	right: 14px;
+	bottom: 4px;
+	height: 2px;
+	background: var(--ag-azul-claro);
+	transform: scaleX(0);
+	transform-origin: center;
+	transition: transform var(--ag-transicion);
+}
+
+.ag-nav__menu > li > a:hover::after,
+.ag-nav__menu > li > a:focus::after,
+.ag-nav__menu > .current-menu-item > a::after,
+.ag-nav__menu > .current_page_item > a::after {
+	transform: scaleX(1);
+}
+
+/* Submenús */
+.ag-nav__menu .sub-menu {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	min-width: 220px;
+	margin: 0;
+	padding: 8px 0;
+	list-style: none;
+	background: var(--ag-blanco);
+	border-radius: 8px;
+	box-shadow: 0 18px 40px rgba(15, 34, 56, 0.25);
+	opacity: 0;
+	visibility: hidden;
+	transform: translateY(10px);
+	transition: all var(--ag-transicion);
+	z-index: 30;
+}
+
+.ag-nav__menu li:hover > .sub-menu,
+.ag-nav__menu li:focus-within > .sub-menu {
+	opacity: 1;
+	visibility: visible;
+	transform: translateY(0);
+}
+
+.ag-nav__menu .sub-menu a {
+	color: var(--ag-azul-oscuro);
+	text-transform: none;
+	letter-spacing: 0;
+	font-weight: 500;
+	font-size: 0.9rem;
+	padding: 9px 20px;
+}
+
+.ag-nav__menu .sub-menu a:hover { background: #eef4fa; color: var(--ag-azul); }
+
+/* Logo */
+.ag-branding {
+	text-align: center;
+}
+
+.ag-branding .custom-logo {
+	max-height: 96px;
+	width: auto;
+	display: block;
+	margin: 0 auto;
+	filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.25));
+}
+
+/* Logo alternativo (monograma) si no hay logo personalizado */
+.ag-monograma {
+	display: inline-flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 18px;
+	text-decoration: none;
+	color: var(--ag-blanco);
+}
+
+.ag-monograma__circulo {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 84px;
+	height: 84px;
+	border-radius: 50%;
+	background: var(--ag-blanco);
+	color: var(--ag-azul);
+	font-family: var(--ag-fuente-titulos);
+	font-weight: 800;
+	font-size: 2rem;
+	letter-spacing: -0.04em;
+	box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.18), 0 10px 30px rgba(0, 0, 0, 0.3);
+	transition: transform var(--ag-transicion);
+}
+
+/* Logo oficial AG en azul sobre el círculo blanco */
+.ag-monograma__circulo .ag-logo {
+	width: 72%;
+	height: auto;
+	display: block;
+}
+
+.ag-monograma:hover,
+.ag-monograma:focus { color: var(--ag-blanco); }
+.ag-monograma:hover .ag-monograma__circulo { transform: scale(1.05); }
+
+.ag-monograma__nombre {
+	font-family: var(--ag-fuente-titulos);
+	font-size: 0.95rem;
+	font-weight: 600;
+	letter-spacing: 0.24em;
+	text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+	text-transform: uppercase;
+	white-space: nowrap;
+}
+
+/* Botón menú móvil */
+.ag-menu-toggle {
+	display: none;
+	background: transparent;
+	border: 2px solid rgba(255, 255, 255, 0.6);
+	border-radius: 6px;
+	width: 46px;
+	height: 42px;
+	padding: 0;
+	cursor: pointer;
+	color: var(--ag-blanco);
+}
+
+.ag-menu-toggle span,
+.ag-menu-toggle span::before,
+.ag-menu-toggle span::after {
+	display: block;
+	width: 22px;
+	height: 2px;
+	background: currentColor;
+	margin: 0 auto;
+	position: relative;
+	transition: all var(--ag-transicion);
+}
+
+.ag-menu-toggle span::before,
+.ag-menu-toggle span::after { content: ""; position: absolute; left: 0; }
+.ag-menu-toggle span::before { top: -7px; }
+.ag-menu-toggle span::after  { top: 7px; }
+
+.ag-nav.is-open .ag-menu-toggle span { background: transparent; }
+.ag-nav.is-open .ag-menu-toggle span::before { top: 0; transform: rotate(45deg); }
+.ag-nav.is-open .ag-menu-toggle span::after  { top: 0; transform: rotate(-45deg); }
+
+/* --------------------------------------------------------------------------
+   4. Rótulo: eslogan + subtítulo
+   -------------------------------------------------------------------------- */
+.ag-hero__contenido {
+	flex: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	padding: 80px 0 230px;
+	position: relative;
+	z-index: 5;
+}
+
+.ag-hero__etiqueta {
+	display: inline-block;
+	margin-bottom: 22px;
+	padding: 7px 18px;
+	border: 1px solid rgba(255, 255, 255, 0.4);
+	border-radius: 50px;
+	background: rgba(255, 255, 255, 0.08);
+	backdrop-filter: blur(4px);
+	font-family: var(--ag-fuente-titulos);
+	font-size: 0.75rem;
+	font-weight: 600;
+	letter-spacing: 0.2em;
+	text-transform: uppercase;
+}
+
+.ag-hero__eslogan {
+	margin: 0 auto 18px;
+	max-width: 900px;
+	font-family: var(--ag-fuente-titulos);
+	font-size: clamp(2rem, 4.6vw, 3.6rem);
+	font-weight: 800;
+	line-height: 1.12;
+	letter-spacing: -0.01em;
+	text-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+}
+
+.ag-hero__eslogan strong {
+	font-weight: 800;
+	color: #bfdcf7;
+}
+
+.ag-hero__separador {
+	width: 70px;
+	height: 3px;
+	margin: 0 auto 22px;
+	border-radius: 3px;
+	background: linear-gradient(90deg, var(--ag-azul-claro), var(--ag-blanco));
+}
+
+.ag-hero__subtitulo {
+	margin: 0 auto 34px;
+	max-width: 640px;
+	font-family: var(--ag-fuente-texto);
+	font-size: clamp(1rem, 1.6vw, 1.2rem);
+	line-height: 1.65;
+	color: var(--ag-texto-suave);
+}
+
+.ag-hero__botones {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 14px;
+}
+
+.ag-btn {
+	display: inline-block;
+	padding: 14px 32px;
+	border: 2px solid transparent;
+	border-radius: 50px;
+	font-family: var(--ag-fuente-titulos);
+	font-size: 0.85rem;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	text-decoration: none;
+	transition: all var(--ag-transicion);
+}
+
+.ag-btn--primario {
+	background: var(--ag-blanco);
+	color: var(--ag-azul-oscuro);
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.ag-btn--primario:hover,
+.ag-btn--primario:focus { background: var(--ag-azul-claro); color: var(--ag-blanco); transform: translateY(-2px); }
+
+.ag-btn--secundario {
+	border-color: rgba(255, 255, 255, 0.75);
+	color: var(--ag-blanco);
+}
+
+.ag-btn--secundario:hover,
+.ag-btn--secundario:focus { background: var(--ag-blanco); color: var(--ag-azul-oscuro); }
+
+/* --------------------------------------------------------------------------
+   4b. Cabecera de sección (páginas interiores)
+   -------------------------------------------------------------------------- */
+.ag-hero--interior {
+	min-height: 500px;
+	background-position: center 40%;
+}
+
+.ag-hero--interior .ag-hero__contenido { padding: 30px 0 170px; }
+
+.ag-hero--interior .ag-hero__eslogan {
+	margin-bottom: 18px;
+	font-size: clamp(2rem, 4.4vw, 3.3rem);
+}
+
+.ag-hero--interior .ag-hero__subtitulo { margin-bottom: 0; }
+
+/* Migas de pan */
+.ag-migas ol {
+	display: inline-flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 4px 0;
+	margin: 0 0 18px;
+	padding: 7px 18px;
+	border: 1px solid rgba(255, 255, 255, 0.25);
+	border-radius: 50px;
+	background: rgba(15, 34, 56, 0.25);
+	-webkit-backdrop-filter: blur(4px);
+	backdrop-filter: blur(4px);
+	list-style: none;
+	font-family: var(--ag-fuente-texto);
+	font-size: 0.82rem;
+}
+
+.ag-migas li { color: var(--ag-blanco); font-weight: 600; }
+
+.ag-migas li + li::before {
+	content: "›";
+	margin: 0 10px;
+	color: var(--ag-azul-claro);
+	font-weight: 700;
+}
+
+.ag-migas a,
+.ag-migas a:visited {
+	color: var(--ag-texto-suave);
+	font-weight: 400;
+	text-decoration: none;
+	transition: color var(--ag-transicion);
+}
+
+.ag-migas a:hover,
+.ag-migas a:focus { color: var(--ag-blanco); }
+
+/* Olas superpuestas más bajas que en la portada */
+.ag-hero--interior .ag-olas { height: 150px; }
+
+/* El título ya aparece en la cabecera: se oculta el repetido del contenido */
+.page:not(.home) .entry-header,
+.single .entry-header .entry-title {
+	display: none;
+}
+
+/* Contenido básico de las páginas interiores */
+body:not(.home) #primary:not(.ag-inicio),
+body:not(.home) #secondary {
+	box-sizing: border-box;
+	max-width: 900px;
+	margin: 0 auto;
+	padding: 40px 24px;
+	font-family: var(--ag-fuente-texto);
+	line-height: 1.75;
+	color: #3c4a5a;
+}
+
+body:not(.home) #primary:not(.ag-inicio) :is(h1, h2, h3, h4) {
+	font-family: var(--ag-fuente-titulos);
+	color: var(--ag-azul-oscuro);
+	line-height: 1.25;
+}
+
+/* --------------------------------------------------------------------------
+   5. Olas de mar en la parte inferior
+   -------------------------------------------------------------------------- */
+.ag-olas {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: -1px;
+	height: 200px;
+	z-index: 4;
+	pointer-events: none;
+	line-height: 0;
+}
+
+.ag-olas svg {
+	width: 100%;
+	height: 100%;
+	display: block;
+}
+
+/* Cada capa tiene su longitud de onda; la animación desplaza exactamente
+   un periodo para que el bucle no tenga saltos. */
+.ag-ola { will-change: transform; }
+
+.ag-ola--1 { fill: url(#ag-ola-grad-1); animation: ag-ola-1 24s linear infinite; }
+.ag-ola--2 { fill: url(#ag-ola-grad-2); animation: ag-ola-2 17s linear infinite reverse; }
+.ag-ola--3 { fill: url(#ag-ola-grad-3); animation: ag-ola-3 13s linear infinite; }
+.ag-ola--4 { fill: var(--ag-ola-frontal); animation: ag-ola-4 20s linear infinite; }
+
+@keyframes ag-ola-1 { from { transform: translateX(0); } to { transform: translateX(120px); } }
+@keyframes ag-ola-2 { from { transform: translateX(0); } to { transform: translateX(95px); } }
+@keyframes ag-ola-3 { from { transform: translateX(0); } to { transform: translateX(80px); } }
+@keyframes ag-ola-4 { from { transform: translateX(0); } to { transform: translateX(100px); } }
+
+@media (prefers-reduced-motion: reduce) {
+	.ag-ola { animation: none; }
+}
+
+/* --------------------------------------------------------------------------
+   6. Responsive
+   -------------------------------------------------------------------------- */
+@media (max-width: 991px) {
+	.ag-topbar__redes { display: none; }
+
+	.ag-nav .ag-container {
+		grid-template-columns: 1fr auto;
+		gap: 16px;
+	}
+
+	.ag-branding { grid-column: 1; grid-row: 1; text-align: left; }
+	.ag-branding .custom-logo { margin: 0; max-height: 64px; }
+	.ag-monograma { flex-direction: row; gap: 14px; }
+	.ag-monograma__nombre { font-size: 0.85rem; letter-spacing: 0.18em; }
+	.ag-monograma__circulo { width: 56px; height: 56px; font-size: 1.35rem; }
+
+	.ag-menu-toggle {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		grid-column: 2;
+		grid-row: 1;
+		justify-self: end;
+	}
+
+	.ag-nav__izquierda,
+	.ag-nav__derecha {
+		grid-column: 1 / -1;
+		display: none;
+	}
+
+	.ag-nav.is-open .ag-nav__izquierda,
+	.ag-nav.is-open .ag-nav__derecha { display: block; }
+
+	.ag-nav.is-open .ag-nav__izquierda { grid-row: 2; margin-top: 8px; }
+	.ag-nav.is-open .ag-nav__derecha   { grid-row: 3; margin-top: -16px; }
+
+	.ag-nav__menu {
+		flex-direction: column;
+		align-items: stretch;
+		gap: 0;
+		background: rgba(15, 34, 56, 0.94);
+		backdrop-filter: blur(6px);
+	}
+
+	.ag-nav__izquierda .ag-nav__menu { border-radius: 10px 10px 0 0; }
+	.ag-nav__derecha  .ag-nav__menu { border-radius: 0 0 10px 10px; }
+
+	.ag-nav__menu a { padding: 14px 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+	.ag-nav__menu > li > a::after { display: none; }
+
+	.ag-nav__menu .sub-menu {
+		position: static;
+		opacity: 1;
+		visibility: visible;
+		transform: none;
+		box-shadow: none;
+		background: transparent;
+		padding: 0 0 0 16px;
+	}
+
+	.ag-nav__menu .sub-menu a,
+	.ag-nav__menu .sub-menu a:visited { color: var(--ag-texto-suave); }
+	.ag-nav__menu .sub-menu a:hover { background: transparent; color: var(--ag-blanco); }
+
+	.ag-hero { min-height: 680px; }
+	.ag-hero__contenido { padding: 50px 0 160px; }
+	.ag-olas { height: 130px; }
+	.ag-hero--interior { min-height: 420px; }
+	.ag-hero--interior .ag-hero__contenido { padding: 30px 0 130px; }
+	.ag-hero--interior .ag-olas { height: 100px; }
+}
+
+@media (max-width: 575px) {
+	.ag-topbar .ag-container { justify-content: center; }
+	.ag-topbar__contacto { gap: 16px; justify-content: center; }
+	.ag-topbar__texto { display: none; } /* En móvil solo iconos */
+	.ag-icono { width: 32px; height: 32px; }
+	.ag-monograma__nombre { display: none; }
+	.ag-hero__etiqueta { font-size: 0.68rem; letter-spacing: 0.12em; }
+	.ag-hero { min-height: 640px; }
+	.ag-hero__contenido { padding: 40px 0 120px; }
+	.ag-olas { height: 90px; }
+	.ag-hero--interior { min-height: 380px; }
+	.ag-hero--interior .ag-hero__contenido { padding: 24px 0 90px; }
+	.ag-hero--interior .ag-olas { height: 70px; }
+	.ag-migas ol { font-size: 0.75rem; padding: 6px 14px; }
+}
